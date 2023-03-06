@@ -1,0 +1,17 @@
+package basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import util.Driverconnection;
+
+public class s011_datepicker {
+	public static void main(String[] args) {
+		
+		WebDriver driver = Driverconnection.connect("https://www.globalsqa.com/demo-site/datepicker/");
+		
+		driver.findElement(By.id("datepicker")).click();
+		
+		
+	}
+}

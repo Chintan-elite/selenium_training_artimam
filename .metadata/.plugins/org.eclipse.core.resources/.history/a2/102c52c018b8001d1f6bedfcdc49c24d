@@ -1,0 +1,25 @@
+package basic;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import util.Driverconnection;
+
+public class s011_datepicker {
+	public static void main(String[] args) {
+		
+		WebDriver driver = Driverconnection.connect("https://www.globalsqa.com/demo-site/datepicker/");
+		
+		//List<WebElement> frame = driver.findElements(By.tagName("iframe"));
+		//System.out.println(frame.size());
+		WebElement frame = driver.findElement(By.xpath("//*[@class='resp-tabs-container']/div[1]/p/iframe"));
+		driver.switchTo().frame(frame);
+		
+		driver.findElement(By.id("datepicker")).click();
+		
+		
+	}
+}

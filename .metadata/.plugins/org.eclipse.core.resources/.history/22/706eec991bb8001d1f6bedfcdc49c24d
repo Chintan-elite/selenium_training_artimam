@@ -1,0 +1,51 @@
+package basic;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import util.Driverconnection;
+
+public class s011_datepicker {
+	public static void main(String[] args) {
+		
+		WebDriver driver = Driverconnection.connect("https://www.globalsqa.com/demo-site/datepicker/");
+		String mydate = "10";
+		String mymonth = "June";
+		String myyear = "2022";
+		//List<WebElement> frame = driver.findElements(By.tagName("iframe"));
+		//System.out.println(frame.size());
+		WebElement frame = driver.findElement(By.xpath("//*[@class='resp-tabs-container']/div[1]/p/iframe"));
+		driver.switchTo().frame(frame);
+		
+		driver.findElement(By.id("datepicker")).click();
+		
+		
+		while(!(driver.findElement(By.className("ui-datepicker-year")).getText()).equals(myyear))
+		{
+			driver.findElement(By.xpath("//*[@data-handler='next']/span")).click();
+		}
+		
+		while(!(driver.findElement(By.className("ui-datepicker-month")).getText()).equals(mymonth))
+		{
+			driver.findElement(By.xpath("//*[@data-handler='next']/span")).click();
+		}
+		
+		List<WebElement> dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']/tbody/tr/td"));
+		
+		for(WebElement date : dates)
+		{
+			if(date.getText().equals(mydate))
+			{
+				date.click();
+			}
+		}
+		
+		
+		
+		
+		
+	}
+}
